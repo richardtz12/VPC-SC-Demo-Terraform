@@ -2,8 +2,6 @@ variable data_project_id {
 }
 variable cloud_storage_bucket_name {
 }
-variable user_id {
-}
 variable create_default_access_policy {
 }
 
