@@ -1,5 +1,5 @@
-organization_id = "738563006490"
-billing_account = "01147F-8133D6-C2CB58"
+organization_id = ""
+billing_account = ""
 demo_folder_name = "VPC Service Controls Demo g"
 data_project_id = "data-project-rzg"
 consumer_project_a_id = "consumer-projecta-rzg"
