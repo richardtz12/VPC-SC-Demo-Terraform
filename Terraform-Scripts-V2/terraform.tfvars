@@ -1,5 +1,5 @@
-organization_id = "738563006490"
-billing_account = "01147F-8133D6-C2CB58"
+organization_id = ""
+billing_account = ""
 user_id = "richard@lanreo.altostrat.com"
 demo_folder_name = "VPC Service Controls Demo m"
 data_project_id = "data-project-rzm"
