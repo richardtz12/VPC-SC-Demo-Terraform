@@ -5,4 +5,4 @@ data_project_id = ""
 consumer_project_a_id = ""
 consumer_project_b_id = ""
 cloud_storage_bucket_name = ""
-create_default_access_policy = 
+create_default_access_policy = false
