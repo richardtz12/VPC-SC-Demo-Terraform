@@ -9,6 +9,7 @@ variable "consumer-project-a-number" {}
 variable "consumer-project-b-number" {}
 variable "region" {}
 variable "create-user" {}
+variable "current_user" {}
 variable "create_default_access_policy" {
     default = 1
 }

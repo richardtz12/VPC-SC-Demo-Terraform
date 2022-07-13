@@ -3,7 +3,9 @@ provider "google" {
 
 provider "google" {
     alias = "service"
-    user_project_override = true
+}
+
+data "google_client_openid_userinfo" "me" {
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -62,10 +64,7 @@ module "data-project" {
   consumer-project-a-sa = module.consumer-project-a.compute_service_account
   consumer-project-b-sa = module.consumer-project-b.compute_service_account
   create-user = var.gcp_account_name
-
-  providers = {
-    google = google.service
-  }
+  current_user = data.google_client_openid_userinfo.me.email
   
   depends_on = [
     module.consumer-project-a,

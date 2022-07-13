@@ -5,7 +5,7 @@
 resource "google_service_account" "compute_service_account" {
   project = google_project.consumer_project_b.project_id
   account_id   = "compute-service-account-b"
-  display_name = "Service Account A"
+  display_name = "Service Account B"
 
   depends_on = [
     time_sleep.wait_X_seconds

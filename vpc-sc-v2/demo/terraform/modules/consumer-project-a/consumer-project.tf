@@ -2,7 +2,7 @@
 # Create Parent Project
 # ----------------------------------------------------------------------------------------------------------------------
 resource "google_project" "consumer_project_a" {
-  project_id      = "${var.create-user}-${var.project_id}"
+  project_id      = "${substr(var.create-user,0,5)}-${var.project_id}"
   name            = "Consumer Project A"
   billing_account = var.billing_account
   folder_id = var.parent_folder

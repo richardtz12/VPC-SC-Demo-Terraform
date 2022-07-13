@@ -2,7 +2,7 @@
 # Create VPC
 # ----------------------------------------------------------------------------------------------------------------------
 resource "google_compute_network" "vpc_network" {
-  project                 = google_project.data_project.id
+  project                 = google_project.data_project.project_id
   name                    = var.vpc-network
   auto_create_subnetworks = false
 
@@ -16,7 +16,7 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   name          = "vpc-subnetwork"
   ip_cidr_range = "10.2.0.0/16"
   region        = var.region
-  project       = google_project.data_project.id
+  project       = google_project.data_project.project_id
   network       = google_compute_network.vpc_network.self_link
   private_ip_google_access   = true 
   depends_on = [
@@ -63,7 +63,7 @@ resource "google_compute_router_nat" "nat" {
 resource "google_compute_firewall" "vpc_network_allow_http_ssh_rdp_icmp" {
     name            = "vpc-network-allow-http-ssh-rdp-icmp"
     network         = google_compute_network.vpc_network.self_link
-    project         = google_project.data_project.id
+    project         = google_project.data_project.project_id
 
     allow {
         protocol = "tcp"

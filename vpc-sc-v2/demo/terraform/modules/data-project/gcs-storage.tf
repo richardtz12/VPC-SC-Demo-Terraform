@@ -2,10 +2,10 @@
 # Create Storage Bucket
 # ----------------------------------------------------------------------------------------------------------------------
 resource "google_storage_bucket" cloud_storage_bucket_name {
-  name          = format("%s%s", var.project_id, var.cloud_storage_bucket_name) 
+  name          = "${var.project_id}-${var.cloud_storage_bucket_name}" 
   location      = "US"
   force_destroy = true
-  project       = google_project.data_project.id
+  project       = google_project.data_project.project_id
 
   uniform_bucket_level_access = true
 

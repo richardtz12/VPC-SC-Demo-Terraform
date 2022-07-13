@@ -9,12 +9,12 @@ variable "billing_account" {
 variable "demo_folder_name" {
  type        = string
  description = "unique name of demo folder to be created"
- default = "vpc-sc"
+ default = "vpc-sc-demo"
 }
 variable "data_project_id" {
  type        = string
  description = "globally unique id of data project to be created"
- default = "data-project-secure3"
+ default = "data-project"
 }
 variable "consumer_project_a_id" {
  type        = string
