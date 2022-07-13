@@ -1,20 +1,12 @@
-variable "org_id" {
-  type        = string
-  description = "organization id required"
-}
-variable "billing_account" {
- type        = string
- description = "billing account required"
-}
 variable "demo_folder_name" {
  type        = string
  description = "unique name of demo folder to be created"
- default = "vpc-sc"
+ default = "vpc-sc-demo"
 }
 variable "data_project_id" {
  type        = string
  description = "globally unique id of data project to be created"
- default = "data-project-secure3"
+ default = "data-project"
 }
 variable "consumer_project_a_id" {
  type        = string
@@ -47,17 +39,25 @@ variable "default_region" {
 # ----------------------------------------------------------------------------------------------------------------------
 # Optional Vars
 # ----------------------------------------------------------------------------------------------------------------------
-# variable "project_name" {
-#  type        = string
-#  description = "project name in which demo deploy"
-# }
-# variable "project_number" {
-#  type        = string
-#  description = "project number in which demo deploy"
-# }
+variable "project_name" {
+ type        = string
+ description = "project name in which demo deploy"
+}
+variable "project_number" {
+ type        = string
+ description = "project number in which demo deploy"
+}
 variable "gcp_account_name" {
   description = "user performing the demo"
 }
-# variable "deployment_service_account_name" {
-#  description = "Cloudbuild_Service_account having permission to deploy terraform resources"
-# }
+variable "deployment_service_account_name" {
+ description = "Cloudbuild_Service_account having permission to deploy terraform resources"
+}
+variable "org_id" {
+  type        = string
+  description = "organization id required"
+}
+variable "billing_account" {
+ type        = string
+ description = "billing account required"
+}

@@ -2,10 +2,11 @@
 # Create Parent Project
 # ----------------------------------------------------------------------------------------------------------------------
 resource "google_project" "data_project" {
-  project_id      = "${var.create-user}-${var.project_id}"
+  project_id      = "${substr(var.create-user,0,5)}-${var.project_id}"
   name            = "data project"
   billing_account = var.billing_account
   folder_id = var.parent_folder
+  auto_create_network = false
 }
 
 resource "time_sleep" "wait_y_seconds" {
