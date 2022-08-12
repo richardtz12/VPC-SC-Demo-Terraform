@@ -1,5 +1,5 @@
 output "project_number" {
-    value = google_project.consumer_project_a.number
+    value = 893299688504
 }
 
 output "compute_service_account" {

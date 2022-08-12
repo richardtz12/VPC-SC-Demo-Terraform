@@ -1,14 +1,14 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # Create Parent Project
 # ----------------------------------------------------------------------------------------------------------------------
-resource "google_project" "consumer_project_b" {
-  project_id      = "${substr(var.create-user,0,5)}-${var.project_id}"
-  name            = "Consumer Project B"
-  billing_account = var.billing_account
-  folder_id = var.parent_folder
-  auto_create_network = false
+# resource "google_project" "consumer_project_b" {
+#   project_id      = "${substr(var.create-user,0,5)}-${var.project_id}-006"
+#   name            = "Consumer Project B"
+#   billing_account = var.billing_account
+#   folder_id = var.parent_folder
+#   auto_create_network = false
   
-}
+# }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Enable APIs
@@ -16,7 +16,7 @@ resource "google_project" "consumer_project_b" {
 resource "google_project_service" "enable-services" {
   for_each = toset(var.services_to_enable)
 
-  project = google_project.consumer_project_b.id
+  project = var.project_id
   service = each.value
   disable_on_destroy = false
 }

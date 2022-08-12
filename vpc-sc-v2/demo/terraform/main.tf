@@ -11,25 +11,25 @@ data "google_client_openid_userinfo" "me" {
 # ----------------------------------------------------------------------------------------------------------------------
 # Create Parent Folder
 # ----------------------------------------------------------------------------------------------------------------------
-resource "google_folder" "vpc-sc-folder" {
-  display_name = var.demo_folder_name
-  parent = "organizations/${var.org_id}"
-}
+# resource "google_folder" "vpc-sc-folder" {
+#   display_name = var.demo_folder_name
+#   parent = "organizations/${var.org_id}"
+# }
 
 # ----------------------------------------------------------------------------------------------------------------------
 # Create & Configure Consumer Project A
 # ----------------------------------------------------------------------------------------------------------------------
 module "consumer-project-a" {
   source  = "./modules/consumer-project-a"
-  parent_folder = google_folder.vpc-sc-folder.name
+  parent_folder = "spam"
   project_id = var.consumer_project_a_id
   billing_account = var.billing_account
   region = var.default_region
   create-user = var.gcp_account_name
 
-  depends_on = [
-    google_folder.vpc-sc-folder
-  ]
+  # depends_on = [
+  #   google_folder.vpc-sc-folder
+  # ]
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -37,15 +37,15 @@ module "consumer-project-a" {
 # ----------------------------------------------------------------------------------------------------------------------
 module "consumer-project-b" {
   source  = "./modules/consumer-project-b"
-  parent_folder = google_folder.vpc-sc-folder.name
+  parent_folder = "spam"
   project_id = var.consumer_project_b_id
   billing_account = var.billing_account
   region = var.default_region
   create-user = var.gcp_account_name
 
-  depends_on = [
-    google_folder.vpc-sc-folder
-  ]
+  # depends_on = [
+  #   google_folder.vpc-sc-folder
+  # ]
 }
 
 # ----------------------------------------------------------------------------------------------------------------------
@@ -53,7 +53,7 @@ module "consumer-project-b" {
 # ----------------------------------------------------------------------------------------------------------------------
 module "data-project" {
   source  = "./modules/data-project"
-  parent_folder = google_folder.vpc-sc-folder.name
+  parent_folder = "spam"
   organization_id = var.org_id
   project_id = var.data_project_id
   billing_account = var.billing_account

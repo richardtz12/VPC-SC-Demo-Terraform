@@ -2,7 +2,7 @@
 # Create VPC
 # ----------------------------------------------------------------------------------------------------------------------
 resource "google_compute_network" "vpc_network" {
-  project                 = google_project.consumer_project_a.project_id
+  project                 = var.project_id
   name                    = var.vpc-network
   auto_create_subnetworks = false
 }
@@ -12,7 +12,7 @@ resource "google_compute_subnetwork" "vpc_subnetwork" {
   name          = "vpc-subnetwork"
   ip_cidr_range = "10.2.0.0/16"
   region        = var.region
-  project       = google_project.consumer_project_a.project_id
+  project       = var.project_id
   network       = google_compute_network.vpc_network.self_link
   private_ip_google_access   = true 
   depends_on = [
@@ -25,7 +25,7 @@ resource "google_compute_router" "primary" {
   name    = "${google_compute_subnetwork.vpc_subnetwork.region}-router"
   region  = "${google_compute_subnetwork.vpc_subnetwork.region}"
   network = google_compute_network.vpc_network.id
-  project                 = google_project.consumer_project_a.project_id
+  project                 = var.project_id
 
   bgp {
     asn = 64514
@@ -43,7 +43,7 @@ resource "google_compute_router_nat" "nat" {
   region                             = var.region
   nat_ip_allocate_option             = "AUTO_ONLY"
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
-  project                 = google_project.consumer_project_a.project_id
+  project                 = var.project_id
 
   log_config {
     enable = true
@@ -59,7 +59,7 @@ resource "google_compute_router_nat" "nat" {
 resource "google_compute_firewall" "vpc_network_allow_http_ssh_rdp_icmp" {
     name            = "vpc-network-allow-http-ssh-rdp-icmp"
     network         = google_compute_network.vpc_network.self_link
-    project         = google_project.consumer_project_a.project_id
+    project         = var.project_id
 
     allow {
         protocol = "tcp"

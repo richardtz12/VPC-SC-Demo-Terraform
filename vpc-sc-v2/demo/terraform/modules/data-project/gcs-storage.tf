@@ -5,7 +5,7 @@ resource "google_storage_bucket" cloud_storage_bucket_name {
   name          = "${var.project_id}-${var.cloud_storage_bucket_name}" 
   location      = "US"
   force_destroy = true
-  project       = google_project.data_project.project_id
+  project       = var.project_id
 
   uniform_bucket_level_access = true
 
@@ -29,7 +29,7 @@ resource "google_storage_bucket_object" "text" {
 
 # Create Multi-project Access
 resource "google_project_iam_member" "data_viewer_a" {
-  project = google_project.data_project.id
+  project = var.project_id
   role    = "roles/storage.admin"
   member = "serviceAccount:${var.consumer-project-a-sa}"
   
@@ -39,7 +39,7 @@ resource "google_project_iam_member" "data_viewer_a" {
 }
 
 resource "google_project_iam_member" "data_viewer_b" {
-  project = google_project.data_project.id
+  project = var.project_id
   role    = "roles/storage.admin"
   member = "serviceAccount:${var.consumer-project-b-sa}"
 
@@ -49,7 +49,7 @@ resource "google_project_iam_member" "data_viewer_b" {
 }
 
 resource "google_project_iam_member" "data_viewer" {
-  project = google_project.data_project.id
+  project = var.project_id
   role    = "roles/storage.admin"
   member = "serviceAccount:${google_service_account.compute_service_account.email}"
   

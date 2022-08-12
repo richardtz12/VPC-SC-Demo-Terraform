@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 # Enable Service account
 resource "google_service_account" "compute_service_account" {
-  project = google_project.consumer_project_a.project_id
+  project = var.project_id
   account_id   = "compute-service-account-a"
   display_name = "Service Account A"
 
@@ -15,7 +15,7 @@ resource "google_service_account" "compute_service_account" {
 
 # Create Instance
 resource "google_compute_instance" "compute_engine" {
-  project = google_project.consumer_project_a.project_id
+  project = var.project_id
   name         = "consumer-a-vm"
   machine_type = "n2-standard-4"
   zone         = "${var.region}-a"

@@ -1,5 +1,5 @@
 resource "google_project" "consumer_project_b" {
-  project_id      = var.consumer_project_b_id
+  project_id      = "${var.consumer_project_b_id}-002"
   name            = "consumer project b"
   billing_account = var.billing_account
   folder_id = google_folder.terraform_demo.name
