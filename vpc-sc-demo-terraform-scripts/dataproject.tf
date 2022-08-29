@@ -215,20 +215,5 @@ resource "google_access_context_manager_service_perimeter" "service-perimeter" {
             } 
         }
     }
-    ingress_policies {
-        ingress_from {
-            # identities = ["user:${var.user_id}", "serviceAccount:${google_service_account.terraform_service_account.email}"]
-            sources {
-                resource = "projects/407882540211"
-            }
-            identity_type = "ANY_IDENTITY"
-        }
-        ingress_to { 
-            resources = [ "projects/${google_project.data_project.number}" ]
-            operations {
-                service_name = "*"
-            } 
-        }
-    }
   }
 }
